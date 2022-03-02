@@ -40,7 +40,7 @@ function checkGuess() {
         lastresult.textContent = 'Almost There!';
 
         if (userGuess < randomNumber) {
-            lowOrHigh.textContent = "You guessed just a bit low!";;
+            lowOrHigh.textContent = "You guessed just a bit low!";
         } else if (userGuess > randomNumber) {
             lowOrHigh.textContent = "You guessed just a bit high!";
         }
