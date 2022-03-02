@@ -6,24 +6,33 @@ let lastresult = document.querySelector('.lastResult');
 let lowOrHigh = document.querySelector('.lowOrHigh');
 let guessSubmit = document.querySelector('.guessSubmit');
 let guessField = document.querySelector('.guessField');
+let attemptsLeft = document.querySelector('.attemptsLeft');
 let guessCount = 1;
 let resetButton;
 
 guessField.focus();
 
 function checkGuess() {
+
     let userGuess = Number(guessField.value);
     if (guessCount === 1) {
         guesses.textContent = 'Previous Guesses: ';
+        attemptsLeft.textContent = 'Attempts Left: 2';
     }
     guesses.textContent += userGuess + ' ';
+
     if (userGuess === randomNumber) {
         lastresult.textContent = 'Congratulations! You WON ';
         lastresult.style.backgroundColor = 'green';
         lowOrHigh.textContent = '';
         setGameOver();
-    } else if (guessCount === 3) {
+    }
+    else if (guessCount === 2) {
+        attemptsLeft.textContent = 'Attempts Left: 1';
+    }
+    else if (guessCount === 3) {
         lastresult.textContent = '!!!GAME OVER!!! You LOST';
+        attemptsLeft.textContent = 'Attempts Left: 0';
         //lastresult.style.backgroundColor = 'red';
         lowOrHigh.textContent = '';
         setGameOver();
@@ -31,7 +40,7 @@ function checkGuess() {
         lastresult.textContent = 'Almost There!';
 
         if (userGuess < randomNumber) {
-            lowOrHigh.textContent = "You guessed just a bit low!";
+            lowOrHigh.textContent = "You guessed just a bit low!";;
         } else if (userGuess > randomNumber) {
             lowOrHigh.textContent = "You guessed just a bit high!";
         }
@@ -40,6 +49,7 @@ function checkGuess() {
     guessCount++;
     guessField.value = '';
     guessField.focus();
+
 }
 
 //add event listener
